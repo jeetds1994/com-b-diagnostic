@@ -1,6 +1,42 @@
-# Behavior Diagnosis Framework
+# Avalanche Simulation Workshop: Behavior Diagnosis Framework
 
-This collection of files encodes a behavioral diagnostic framework built on top of two established models from behavioral science: the **COM-B model** (Capability, Opportunity, Motivation - Behavior) by Susan Michie and colleagues, and the **Behavior Change Wheel (BCW)** intervention taxonomy. The framework extends these models into the domain of organizational behavior adoption, tool design, and change strategy. It also includes an applied example showing how to use COM-B to profile personas within a multi-actor behavior system.
+This repo supports the **avalanche simulation workshop**. It provides the behavioral diagnostic framework participants will use to analyze decision-making across the avalanche safety system.
+
+The framework is built on two established models from behavioral science: the **COM-B model** (Capability, Opportunity, Motivation - Behavior) by Susan Michie and colleagues, and the **Behavior Change Wheel (BCW)** intervention taxonomy. For the workshop, these models are applied to avalanche safety — a multi-actor behavior system where forecasters, field observers, ski patrol, guides, recreationists, SAR teams, and educators each play distinct roles, and where failures tend to occur at the interfaces between actors rather than within any single one.
+
+The persona profiles in `personas_jobs.md` are the central artifact for the workshop. The diagnostic cycle and reference files provide the underlying COM-B and BCW vocabulary needed to reason about why behaviors break down and what interventions might help.
+
+## How to apply this framework
+
+This framework works at two levels, and the workshop will use both.
+
+### Level 1: Diagnose the behavior
+
+Pick a specific avalanche safety behavior — terrain selection, forecast interpretation, turn-around decisions, mitigation timing, companion rescue, or any other critical practice. Use the **diagnostic cycle** (`behavior-jtbd-maturity-diagnostic-cycle.md`) to classify its current state across seven possibilities: from fully ritualized and stable, through friction-filled or inconsistent, down to aspirational, suppressed, or conceptually undefined. Each state comes with a COM-B blocker profile that explains *why* the behavior looks the way it does, and a set of intervention strategies matched to those specific blockers.
+
+This level answers: **"What is happening with this behavior, why is it stuck, and what interventions fit?"**
+
+### Level 2: Map the actors
+
+Avalanche safety behaviors do not live inside a single person. They span a system of actors — forecasters, field observers, ski patrol, highway control, mountain guides, backcountry recreationists, SAR teams, and educators — each with their own capability, opportunity, and motivation profile. The persona profiles in `personas_jobs.md` map each actor's COM-B breakdown, target behaviors, and failure modes.
+
+The critical insight is at the **interfaces**. Forecasters, observers, and patrol may each perform well within their own scope, but failures concentrate at the handoffs — where one actor's output becomes another's input. A forecast that is technically accurate but communicated abstractly fails the guide who needs actionable terrain guidance. Strong mitigation by patrol means nothing if the recreationist reads open terrain as implicit permission.
+
+This level answers: **"Who are the actors, what does COM-B look like for each of them, and where do the breakdowns between actors actually happen?"**
+
+### Combining both levels in the workshop
+
+For a complete diagnosis during the simulation:
+
+1. **Name the behavior.** What specific avalanche safety practice or decision are you examining?
+2. **Classify its state** using the diagnostic cycle. Identify the COM-B blockers.
+3. **Profile the actors** involved using `personas_jobs.md`. For each, review their capability, opportunity, motivation, and failure modes.
+4. **Find the misalignments.** Where do actors optimize for different objectives? Where does one actor's failure mode become another's blocker? Where does automatic motivation (powder fever, social pressure, familiarity) override what people know they should do?
+5. **Select interventions** that target the specific blockers and misalignments you found — not generic safety advice.
+
+The reference files (`com-b-abbreviations-reference.md`, `com-b-to-bcw-intervention-function-mapping.md`, `com-b-tool-influence-mechanisms-and-levers.md`, `com-b-behavior-states-primary-secondary-blockers.md`) provide the vocabulary, intervention logic, and tool mechanisms you need at each step.
+
+---
 
 ## How to think about these files
 
