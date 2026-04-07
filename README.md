@@ -117,6 +117,56 @@ The core framing: avalanche safety is not a knowledge problem — it is a distri
 
 This file demonstrates how the abstract COM-B vocabulary (Layer 1) can be applied to profile real actors, diagnose where behavior breaks down across a system, and identify the interfaces between personas where interventions matter most.
 
+### Layer 7: Analysis process
+
+**`analysis-template.md`**
+
+A step-by-step scaffold for running a full multi-actor COM-B analysis. Walks through nine steps: define the system, list actors, profile each actor's COM-B, analyze interfaces, classify behavior states, identify blocker concentration, select interventions, prioritize, and check system-level dynamics.
+
+This file answers: "How do I actually run a COM-B analysis from start to finish?"
+
+### Layer 8: Interface diagnostics
+
+**`interface-diagnostic-template.md`**
+
+A structured template for analyzing handoff failures *between* actors. For each interface, maps what Actor A produces vs. what Actor B needs, classifies the failure type (translation, timing, quality, volume, absence, semantic, feedback), and diagnoses COM-B roots on both sides.
+
+Includes a worked example: Field Observer -> Forecaster handoff.
+
+This file answers: "Where are the handoffs breaking down, and what COM-B forces explain each side of the gap?"
+
+### Layer 9: Prioritization
+
+**`prioritization-framework.md`**
+
+A scoring method for ranking interventions when everything looks important. Five dimensions: Impact, Frequency, Blocker Concentration, Interface Leverage, and Feasibility. Includes tiebreaking rules and a worked scoring example for the avalanche observation reporting domain.
+
+This file answers: "Given multiple candidate interventions, which should I do first?"
+
+### Layer 10: Transition tracking
+
+**`state-transition-signals.md`**
+
+Observable, falsifiable indicators for each transition in the 7-state cycle. For each transition: forward signals (behavior improving), regression signals (behavior sliding back), and measurement suggestions. All examples are from the avalanche observation domain.
+
+This file answers: "How do I know if my intervention is working?"
+
+### Layer 11: Intervention quality
+
+**`intervention-quality-criteria.md`**
+
+For each of the nine BCW intervention functions (ED, TR, PE, INC, COE, RE, ER, MO, EN): what good implementation looks like, what poor implementation looks like, common failure modes, and avalanche observation examples.
+
+This file answers: "I know which intervention type to use — how do I implement it well?"
+
+### Layer 12: Case studies
+
+**`case-studies/avalanche-observation-reporting/analysis.md`**
+
+A complete worked analysis applying the full framework to an avalanche observation reporting app. Includes: system definition, persona roles, observation-specific behavioral role variants (Professional Observer, Volunteer Observer, Resort Patrol, Backcountry Patrol, IFMGA Guide, Informal Trip Leader, Trained Recreationist, Casual Consumer, Social Sharer), four core behavior diagnoses with COM-B blockers, interface failure map, blocker concentration analysis, five prioritized interventions, and system-level insights.
+
+This file demonstrates how all the layers work together in practice.
+
 ---
 
 ## How the files reference each other
@@ -153,6 +203,37 @@ personas_jobs.md
     Demonstrates: how to decompose a multi-actor system using COM-B
     Complements: diagnostic cycle (cycle diagnoses behavior states;
                   personas file diagnoses actor-level breakdowns)
+
+analysis-template.md
+    Uses: all reference files above
+    References: interface-diagnostic-template.md, prioritization-framework.md
+    Provides: the step-by-step process that ties all layers together
+
+interface-diagnostic-template.md
+    Uses: COM-B codes from abbreviations reference
+    Used by: analysis-template.md (Step 4)
+    Complements: personas file (personas profile actors; interfaces profile handoffs)
+
+prioritization-framework.md
+    Uses: blocker concentration data from analysis-template.md (Step 6)
+    References: COM-B codes, BCW functions
+    Used by: analysis-template.md (Step 8)
+
+state-transition-signals.md
+    Uses: 7-state cycle from diagnostic cycle
+    Provides: observable indicators for each state transition
+    Used after: intervention selection (analysis-template.md Step 7)
+
+intervention-quality-criteria.md
+    Uses: BCW function definitions from intervention mapping
+    Provides: good/poor implementation criteria per BCW function
+    Used during: intervention design (analysis-template.md Step 7)
+
+case-studies/avalanche-observation-reporting/analysis.md
+    Applies: all layers (analysis template, interface diagnostics,
+             prioritization, personas, diagnostic cycle)
+    Extends: personas file with observation-specific role variants
+    Demonstrates: complete end-to-end framework application
 ```
 
 ## How an LLM should use this framework
@@ -175,11 +256,22 @@ personas_jobs.md
    - Is the environment implicitly permitting the wrong behavior?
    - Are different actors optimizing for different objectives with no one owning end-to-end alignment?
 
-8. **Avoid common mistakes.**
+8. **Analyze interfaces.** Use the interface diagnostic template to map handoff failures between actors. For each interface, classify the failure type (translation, timing, quality, volume, absence, semantic, feedback) and diagnose COM-B roots on both sides. Interface failures are typically higher-leverage than actor-internal problems.
+
+9. **Prioritize interventions.** When multiple interventions are candidates, use the prioritization framework to score them across five dimensions: Impact, Frequency, Blocker Concentration, Interface Leverage, and Feasibility. Apply tiebreaking rules (prefer interface fixes, feasibility, and feedback loops).
+
+10. **Track progress.** After implementing interventions, use the state transition signals to monitor whether the behavior is moving forward, stalling, or regressing. Define specific forward signals and timelines before launching an intervention.
+
+11. **Evaluate intervention quality.** Before recommending a specific implementation, check it against the intervention quality criteria for its BCW function. Good implementations are contextual, embedded, and low-friction. Poor implementations are generic, front-loaded, and friction-adding.
+
+12. **Use role variants for tool design.** When the analysis is for a specific tool or app, go beyond base personas to identify behavioral variants within each persona. Use the case study's role profiles as a template. Different variants within the same persona may require different design responses.
+
+13. **Avoid common mistakes.**
    - Do not assume higher states are always better. "Fully Realized & Stable" can mask brittleness and hidden cost.
    - Do not treat the seven states as mutually exclusive within an organization. Different teams may be at different states for the same behavior.
    - Do not skip diagnosis. The framework's value is in matching the intervention to the specific blocker profile, not in applying generic advice.
    - Do not profile personas in isolation. The value of multi-actor COM-B analysis is in revealing misalignment between actors, not just within them.
+   - Do not skip interface analysis. System-level failures concentrate at handoffs, not within individual actors.
 
 ## Theoretical foundations
 
